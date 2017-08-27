@@ -20,4 +20,16 @@ public class ArraysAndStrings {
         }
         return true;
     }
+
+    /**
+     * Given two strings, write a method to decide if one is a permutation of the other.
+     * @param s String to check for permutation
+     * @param t String to check for permutation
+     * @return true is t is a permutation of t
+     */
+    public static boolean isPermutation(String s, String t){
+        if(s.length() != t.length()) return false;
+
+        return PracticeHelper.sort(s).equals(PracticeHelper.sort(t));
+    }
 }
