@@ -5,6 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArraysAndStringsTest {
+    @Test
+    void palindromePermutation() {
+        String permutation = "Tact Coa";
+        String notPermutation = "Bact Coa";
+
+        boolean trueResult = ArraysAndStrings.palindromePermutation(permutation) == true;
+        boolean falseResult = ArraysAndStrings.palindromePermutation(notPermutation) == false;
+
+        assertTrue(trueResult && falseResult);
+    }
 
     @Test
     void urlify() {
