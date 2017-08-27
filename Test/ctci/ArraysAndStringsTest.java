@@ -7,6 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class ArraysAndStringsTest {
 
     @Test
+    void urlify() {
+        String originalString = "Mr John Smith    ";
+        int trueLegnth = 13;
+        String expectedOutput = "Mr%20John%20Smith";
+
+        assertEquals(ArraysAndStrings.urlify(originalString.toCharArray(), 13), expectedOutput);
+    }
+
+    @Test
     void isPermutation() {
         String permutation1 = "abc";
         String permutation2 = "cba";
