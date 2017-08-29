@@ -75,6 +75,11 @@ public class ArraysAndStrings {
         return checkMaxOneOdd(table);
     }
 
+    /**
+     * check the table for number of odd values
+     * @param table table to check for values
+     * @return true if there is only one odd value in the array
+     */
     private static boolean checkMaxOneOdd(int[] table) {
         boolean foundOdd = false;
         for(int count : table){
@@ -88,6 +93,11 @@ public class ArraysAndStrings {
         return true;
     }
 
+    /**
+     * build a table of how frequently a char is contained within a char array
+     * @param chars the array of chars to count
+     * @return an int array of the amount of each char is in the char array
+     */
     private static int[] buildCharFrequencyTable(char[] chars) {
         int[] table = new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1]; //assume english alphabet
 
@@ -101,6 +111,11 @@ public class ArraysAndStrings {
         return table;
     }
 
+    /**
+     * Get the numeral value of a char
+     * @param c char to get numeral value for
+     * @return the integer value of the char
+     */
     private static int getCharNumber(char c) {
         int a = Character.getNumericValue('a');
         int z = Character.getNumericValue('z');
@@ -110,5 +125,66 @@ public class ArraysAndStrings {
             return val - a;
         }
         return -1;
+    }
+
+    /**
+     * There are three types of edits that can be performed on a string: insert a character, remove a character, or
+     * replace a character. Given two strings, write a function to check if they are one edit away
+     * @param first the first string to check against
+     * @param second the second string to see if it is one edit away from the first
+     * @return return true if the second string is one edit away frow the first
+     */
+    public static boolean oneAway(String first, String second){
+        if(first.length() == second.length()){
+            return oneEditReplace(first, second);
+        } else if(first.length() + 1 == second.length()){
+            return oneEditInsert(first, second);
+        } else if(first.length() - 1 == second.length()){
+            return oneEditInsert(second, first);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the second string is one insert away from the first string
+     * @param first string to check against
+     * @param second string to insert too
+     * @return true if the second string is one insert away from the first string
+     */
+    private static boolean oneEditInsert(String first, String second) {
+        int index1 = 0;
+        int index2 = 0;
+
+        while(index2 < second.length() && index1 < first.length()){
+            if(first.charAt(index1) != second.charAt(index2)){
+                if(index1 != index2){
+                    return false;
+                }
+                index2++;
+            }
+            index1++;
+            index2++;
+        }
+        return true;
+    }
+
+    /**
+     * Check if the second string is one char replacement away from the first string
+     * @param first the string to check agaisnt
+     * @param second the string to check if one char away from the first
+     * @return true if the second string is one char replacement away from the first
+     */
+    private static boolean oneEditReplace(String first, String second) {
+        boolean foundDifference = false;
+        for(int i = 0; i < first.length(); i++){
+            if (first.charAt(i) != second.charAt(i)) {
+                if(foundDifference){
+                    return false;
+                }
+                foundDifference = true;
+            }
+        }
+        return true;
     }
 }

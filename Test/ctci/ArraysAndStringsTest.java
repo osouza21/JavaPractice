@@ -6,6 +6,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArraysAndStringsTest {
     @Test
+    void oneAway() {
+        String original = "pale";
+        String alternate1 = "ple";
+        String alternate2 = "pile";
+        String alternate3 = "pales";
+        String alternate4 = "paet";
+
+        boolean result1 = ArraysAndStrings.oneAway(original, alternate1) == true;
+        boolean result2 = ArraysAndStrings.oneAway(original, alternate2) == true;
+        boolean result3 = ArraysAndStrings.oneAway(original, alternate3) == true;
+        boolean result4 = ArraysAndStrings.oneAway(original, alternate4) == false;
+
+        assertTrue(result1 && result2 && result3 && result4);
+    }
+
+    @Test
     void palindromePermutation() {
         String permutation = "Tact Coa";
         String notPermutation = "Bact Coa";
