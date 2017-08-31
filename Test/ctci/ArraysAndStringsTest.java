@@ -6,6 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArraysAndStringsTest {
     @Test
+    void compressString() {
+        String str = "aabcccccaaa";
+        String expected = "a2b1c5a3";
+
+        assertEquals(ArraysAndStrings.compressString(str), expected);
+    }
+
+    @Test
     void oneAway() {
         String original = "pale";
         String alternate1 = "ple";
