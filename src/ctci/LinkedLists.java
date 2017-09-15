@@ -178,4 +178,35 @@ public class LinkedLists {
         }
         return newNode;
     }
+
+    /**
+     * Book answer
+     * You have two numbers represeneted by a linked list, where each node contains and single digit. the digits are
+     * are stored in reverse order .add these two numbers and return a linked list with the sum in reverse
+     * @param l1 first number
+     * @param l2 second number
+     * @return linked list with the sum of the two numbers
+     */
+    public static Node addListRecursive(Node l1, Node l2, int carry){
+        if(l1 == null && l2 == null && carry == 0) return null;
+
+        Node result = new Node(0);
+        int value = carry;
+        if(l1 != null){
+            value += l1.data;
+        }
+        if(l2 != null){
+            value += l2.data;
+        }
+
+        result.data = value % 10;
+
+        if(l1 != null || l2 != null){
+            Node more = addListRecursive(l1 == null ? null : l1.next,
+                                         l2 == null ? null : l2.next,
+                                         value >= 10 ? 1 : 0);
+            result.next = more;
+        }
+        return result;
+    }
 }
