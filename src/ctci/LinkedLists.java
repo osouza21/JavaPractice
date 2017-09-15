@@ -1,6 +1,7 @@
 package ctci;
 
 import java.util.HashSet;
+import java.util.Stack;
 
 public class LinkedLists {
 
@@ -208,5 +209,32 @@ public class LinkedLists {
             result.next = more;
         }
         return result;
+    }
+
+    /**
+     * Check if a linked list is a palindrome
+     * @param head linked list to check
+     * @return true if the linked list is a plaindrome
+     */
+    public static boolean isPalindrome(Node head){
+        Node slowRunner = head;
+        Node fastRunner = head;
+        Stack<Integer> stack = new Stack<>();
+        while(fastRunner != null && fastRunner.next != null){
+            stack.add(slowRunner.data);
+            slowRunner = slowRunner.next;
+            fastRunner = fastRunner.next.next;
+        }
+        if(fastRunner != null) slowRunner = slowRunner.next;
+        while(slowRunner != null){
+            if(stack.peek().intValue() == slowRunner.data){
+                stack.pop();
+            }
+            else {
+                return false;
+            }
+            slowRunner = slowRunner.next;
+        }
+        return true;
     }
 }

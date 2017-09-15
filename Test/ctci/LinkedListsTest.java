@@ -9,6 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LinkedListsTest {
     @Test
+    void isPalindrome() {
+        Node node = buildLinkedList(new int[]{0,1,2,1,0});
+        assertTrue(LinkedLists.isPalindrome(node));
+    }
+
+    @Test
     void sumList() {
         Node node1 = buildLinkedList(new int[]{7,1,6});
         Node node2 = buildLinkedList(new int[]{5,9,2});
