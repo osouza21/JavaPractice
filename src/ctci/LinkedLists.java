@@ -135,4 +135,47 @@ public class LinkedLists {
         beforeEnd.next = afterStart;
         return beforeStart;
     }
+
+    /**
+     * Yo have two numbers represeneted by a linked list, where each node contains and single digit. the digits are
+     * are stored in reverse order .add these two numbers and return a linked list with the sum in reverse
+     * @param node1 first number
+     * @param node2 second number
+     * @return linked list with the sum of the two numbers
+     */
+    public static Node sumList(Node node1, Node node2){
+        int remainder = 0;
+        Node newNode;
+        int n1 = node1.data;
+        int n2 = node2.data;
+
+        newNode = new Node(n1 + n2 + remainder);
+        remainder = 0;
+        if(newNode.data >= 10){
+            newNode.data = newNode.data - 10;
+            remainder = 1;
+        }
+        Node n = newNode;
+        while(node1.next != null || node2.next != null){
+            n1 = 0;
+            n2 = 0;
+            if(node1.next != null){
+              n1 = node1.next.data;
+              node1 = node1.next;
+            }
+            if(node2.next != null){
+                n2 = node2.next.data;
+                node2 = node2.next;
+            }
+
+            n.next = new Node(n1 + n2 + remainder);
+            remainder = 0;
+            if(n.next.data >= 10){
+                n.next.data = n.next.data - 10;
+                remainder = 1;
+            }
+            n = n.next;
+        }
+        return newNode;
+    }
 }

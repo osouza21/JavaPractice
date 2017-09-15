@@ -4,9 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LinkedListsTest {
+    @Test
+    void sumList() {
+        Node node1 = buildLinkedList(new int[]{7,1,6});
+        Node node2 = buildLinkedList(new int[]{5,9,2});
+        Node results = LinkedLists.sumList(node1, node2);
+        int[] arr = PracticeHelper.nodeToArray(results);
+        assertTrue(Arrays.equals(arr, new int[]{2,1,9}));
+    }
 
     @Test
     void kthToLast() {
