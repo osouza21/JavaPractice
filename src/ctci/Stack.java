@@ -1,0 +1,39 @@
+package ctci;
+
+import java.util.NoSuchElementException;
+
+public class Stack<T> {
+    private static class StackNode<T>{
+        private T data;
+        private StackNode next;
+
+        public StackNode(T item){
+            this.data = item;
+        }
+    }
+
+    private StackNode<T> top;
+
+
+    public T pop(){
+        if(top == null) throw new NoSuchElementException();
+        T data = top.data;
+        top = top.next;
+        return data;
+    }
+
+    public void push(T item){
+        StackNode<T> node = new StackNode<>(item);
+        node.next = top;
+        top = node;
+    }
+
+    public T peek(){
+        if(top == null) throw new NoSuchElementException();
+        return top.data;
+    }
+
+    public boolean isEmpty(){
+        return top == null;
+    }
+}
