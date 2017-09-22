@@ -264,4 +264,37 @@ public class LinkedLists {
         return longer;
     }
 
+    /**
+     * given a circular looked list, implement an algorithm that returns the node the beginning of the loop
+     * @param head head node of linked list
+     * @return the node that starts a loop
+     */
+    public static Node loopDetection(Node head){
+        Node slow = head;
+        Node fast = head;
+
+        // Find the meeting point. this will be LOOP_SIZE - k steps into  the list
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                break;
+            }
+        }
+
+        // if fast is null then there is no loop
+        if(fast == null || fast.next == null){
+            return null;
+        }
+
+        // find the location of the loop node. set node
+        slow = head;
+        while(slow != fast){
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return fast;
+    }
+
 }
