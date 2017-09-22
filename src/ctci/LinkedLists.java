@@ -237,4 +237,31 @@ public class LinkedLists {
         }
         return true;
     }
+
+    /**
+     * Given two linked lists, determine if the two lists intersect. Return the intersecting node.
+     * @param node1 head node of first linked list
+     * @param node2 head node of second linked list
+     * @return the intersecting node
+     */
+    public static Node intersection(Node node1, Node node2){
+        // get tail node and size of each list
+        TailAndSize t1 = TailAndSize.getTailAndSize(node1);
+        TailAndSize t2 = TailAndSize.getTailAndSize(node2);
+
+        // if the tail nodes are different then the lists do not intersect
+        if(t1.tail != t2.tail) return null;
+
+        Node shorter = t1.size > t2.size? node2 : node1;
+        Node longer = t1.size > t2.size? node1 : node2;
+
+        longer = PracticeHelper.getKthNode(longer, Math.abs(t1.size - t2.size));
+
+        while(longer != shorter){
+            longer = longer.next;
+            shorter = shorter.next;
+        }
+        return longer;
+    }
+
 }

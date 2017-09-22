@@ -43,4 +43,36 @@ public class PracticeHelper {
         }
         return arr;
     }
+
+    /**
+     * Get the kth node from a list.
+     * @param node head of linked list
+     * @param k index of node to get
+     * @return node at the kth spot of null
+     */
+    public static Node getKthNode(Node node, int k) {
+        Node current = node;
+        while(k > 0 && current != null){
+            current = current.next;
+            k--;
+        }
+        return current;
+    }
+
+    /**
+     * Build a linked list from a integer array and return the head node
+     * @param data the array to build a linked list from
+     * @return the head node or null if data is empty
+     */
+    public static Node buildLinkedList(int[] data){
+        if(data.length < 1) return null;
+
+        Node head = new Node(data[0]);
+
+        for(int i = 1; i < data.length; i++){
+            head.appendToTail(data[i]);
+        }
+
+        return head;
+    }
 }
