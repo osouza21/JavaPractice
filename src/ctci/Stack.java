@@ -3,6 +3,12 @@ package ctci;
 import java.util.NoSuchElementException;
 
 public class Stack<T> {
+    private int size = 0;
+
+    public int size() {
+        return this.size;
+    }
+
     private static class StackNode<T>{
         private T data;
         private StackNode next;
@@ -19,6 +25,7 @@ public class Stack<T> {
         if(top == null) throw new NoSuchElementException();
         T data = top.data;
         top = top.next;
+        this.size--;
         return data;
     }
 
@@ -26,6 +33,7 @@ public class Stack<T> {
         StackNode<T> node = new StackNode<>(item);
         node.next = top;
         top = node;
+        this.size++;
     }
 
     public T peek(){
