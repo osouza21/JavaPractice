@@ -61,4 +61,8 @@ class BinaryTreeNode<T> {
     T data;
     public BinaryTreeNode leftChild;
     public BinaryTreeNode rightChild;
+
+    public BinaryTreeNode(T data) {
+        this.data = data;
+    }
 }
